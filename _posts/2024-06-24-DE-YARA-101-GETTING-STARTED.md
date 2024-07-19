@@ -321,6 +321,9 @@ Decoding Magic Numbers
 _Full screen width and center alignment_
 
 
+![Desktop View](/images/yara/edited_packing.gif)
+
+
 We can write rule conditions that depend on data stored at a certain file offset or memory virtual address, using the following functions,
 
 **int** 8/16/32 | reads 8, 16, and 32 bits signed integers  - `little-endian` format | 
