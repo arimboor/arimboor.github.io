@@ -1,6 +1,6 @@
 ---
 title: Part 5- Threat Hunting using YARA on Windows Enviroment.
-description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
+description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-25 12:00:00 -500
 categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
 tags: [Yara]

@@ -1,8 +1,8 @@
 ---
-title: Part 4 - YARA Rule Engineering & Modules for Windows Files.
+title: Part - YARA Rule Engineering and Key Modules.
 description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
 date: 2024-04-25 12:00:00 -500
-categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara]
 pin: true
 math: true
