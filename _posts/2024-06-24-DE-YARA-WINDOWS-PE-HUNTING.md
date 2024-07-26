@@ -2,7 +2,7 @@
 title: Bytes of Insights - Hunting for Windows malwares using YARA. 
 description: Bytes of Insights - Hunting for Windows malwares using YARA.
 date: 2024-04-24 12:00:00 -500
-categories: [Detection Engineering, Bytes of Insights - Hunting for Windows malwares using YARA]
+categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
 tags: [Yara]
 pin: true
 math: true
