@@ -1,7 +1,7 @@
 ---
 title: Part 5- Threat Hunting using YARA on Windows Enviroment.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
-date: 2024-04-25 12:00:00 -500
+date: 2024-04-24 12:00:00 -500
 categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
 tags: [Yara]
 pin: true
