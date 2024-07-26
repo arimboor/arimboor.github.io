@@ -469,7 +469,7 @@ uint8(28) == 0x4D
 
 To build a YARA rule to detect malicious code, we would first need to analyze and extract interesting artifacts from the file. The following are common interesting artifacts found in a file, such as a Windows PE Executable. Please note that there could be other interesting artifacts as well that can be found, but it will be difficult to include all of them in the blog.
 
-![light mode only](/images/yara/x){: .light  }
+
 ![dark mode only](/images/yara/ioc.PNG){: .dark   }
 
 > **`Unique Strings`** can be anything, including a `typo error` in the code, as malware authors are often found in non-English speaking countries.
@@ -479,7 +479,7 @@ To build a YARA rule to detect malicious code, we would first need to analyze an
 
 There are quite a few tools out there that can help to analyze the interesting artifacts in a file. Some of my favorite tools are listed below; however, use the one you are comfortable with. 
 
-![light mode only](/images/yara/xx.PNG){: .light  }
+
 ![dark mode only](/images/yara/extract_tools.PNG){: .dark   }
 
 Be careful when using automated rule creation tools such as YaraGen.py. This requires additional manual rule review before rolling out in a production environment.
