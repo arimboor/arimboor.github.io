@@ -20,7 +20,7 @@ hhex
 https://www.youtube.com/watch?v=jHz8fD9TqZw&ab_channel=InsaneCyber
 https://www.youtube.com/watch?v=VljT6UytBg8&ab_channel=CyberD0M
 
-![light mode only](/images/yara/xxs.PNG){: .light  }
+
 ![dark mode only](/images/yara/approach.PNG){: .dark   }
 
 
@@ -76,7 +76,7 @@ alternatives | { **`(6D | 7D)`** 61 6C 77 61 72 65 }
 
 Modules have functions which can be used when writing a YARA rule. They often do the heavy lifting so that we can write less code when developing rules. Consider it as modules we import in programming languages such as Python in order to reuse existing code to achieve something. This will ease our work.
 
-![light mode only](/images/yara/xxs.PNG){: .light  }
+
 ![dark mode only](/images/yara/modules.PNG){: .dark   }
 
 Here is the link to all available modules. Have a look before writing your next YARA rule; there may be something already there.
