@@ -1,8 +1,8 @@
 ---
-title: Part 1 - Getting started with YARA. 
+title: Part 1 - Getting started with YARA and Windows PE Files. 
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-24 12:00:00 -500
-categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+categories: [Detection Engineering, Hunting malicious Windows PE files & Maldocs using YARA]
 tags: [Yara]
 pin: true
 math: true
