@@ -2,7 +2,7 @@
 title: Part 2 - Extracting interesting artifacts from Windows PE files
 description: Bytes of Insights - Hunting for Windows malwares using YARA.
 date: 2024-04-24 12:00:00 -500
-categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara]
 pin: true
 math: true
