@@ -1,0 +1,146 @@
+---
+title: Part 5.3 - Hunting with YARA - Exploits.
+description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
+date: 2024-04-25 12:00:00 -500
+categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+tags: [Yara]
+pin: true
+math: true
+mermaid: true
+image:
+  path: /images/wallpaper_chik.jpg
+  
+---
+
+<!-- PROD-->
+
+Vulnerability exploitation is one of the top attack vectors in most high-value breach in recent years. Here are some of the vulnerabilities that grab the headlines.
+
+- (RCE) Vulnerability (`CVE-2024-3400`) In  Palo Alto Networks PAN-OS
+- (RCE) Vulnerability (`CVE-2023-3519`) in Netscaler ADC (Citrix ADC) and Netscaler Gateway (Citrix Gateway)
+- (RCE) Vulnerability (`CVE-2023-22527`) In Confluence Data Center and Confluence Server
+- (SQL inj) Vulnerability (`CVE-2023-34362`) MOVEit
+- X Vulnerability(`CVE-2023-42659`) in Progress (formerly Ipswitch) WS_FTP Server
+- supply chain = `CVE-2023-29059` = 3CX Desktop App Compromised 
+- `CVE-2022-30190` (aka Follina
+- ManageEngine `CVE-2022-47966` is a pre-authentication remote code execution vulnerability
+- (RCE) vulnerability (`CVE-2021-44228`) in Apache’s Log4j software library
+- `CVE-2021-26855` exchnage proxyLogon 
+- supply chain = SolarWinds 
+
+
+- supply chain = Kaseya
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/crime_revil_general.yar
+
+
+When responding to a security breach, one of the key objectives for the incident responder is to figure out the entry point or the Patient Zero. This can be quite challenging, as the customer may have more than one entry point to the infrastructure other than phishing the end user. We can make use of YARA rules when responding to similar breaches.
+
+- Rule Type 1: Rules targeting the compromised server or endpoint **logs**.
+- Rule Type 2: Rules targeting the **application** to verify its vulnerability against the exploit.
+
+### Detect CVE-2024-3400 exploitation in Palo Alto Networks PAN-OS
+
+This was a quite recent exploitation and significantly affected many enterprises since a lot of them use Palo Alto firewalls. Since these appliances are hardened and completely locked down, it is extremely difficult to get triage image, especially when it is a physical appliance. Technical data extracted with the help of Palo Alto technical support was the first set of evidence for analysis. The objective is to quickly look at the dump and see any signs of compromise. If yes, then kickstart the incident response and forensics.
+
+https://security.paloaltonetworks.com/CVE-2024-3400
+https://www.paloaltonetworks.com/blog/2024/04/more-on-the-pan-os-cve/
+https://blackkite.com/blog/focus-friday-a-comprehensive-analysis-of-cve-2024-3400-and-its-risks/
+https://www.letsdefend.io/blog/command-injection-vulnerability-in-palo-alto-networks-pan-os-cve-2024-3400
+https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_paloalto_cve_2024_3400_apr24.yar
+
+https://github.com/arimboor/Yara_Rules/blob/main/PaloAlto-Firewalls-CVE-2024-3400.yar
+
+Velociraptor path 
+
+```text
+/home/platform/yara/sftp/PA_CASE/**/*.*
+/home/platform/yara/sftp/PA_CASE/**/*.{log,old}
+```
+
+
+
+
+
+### Detect CVE-2023-22527 exploitation In Confluence Server
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_cve_2021_26084_confluence_log.yar
+
+### Detect CVE-2023-34362 exploitation in MOVEit
+
+https://unit42.paloaltonetworks.com/threat-brief-moveit-cve-2023-34362/
+https://www.horizon3.ai/attack-research/attack-blogs/moveit-transfer-cve-2023-34362-deep-dive-and-indicators-of-compromise/
+
+### Detect CVE-2023-42659 exploitation in WS_FTP Server
+
+### Detect CVE-2023-29059 exploitation in 3CX Desktop App
+
+https://nvd.nist.gov/vuln/detail/CVE-2023-42659
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_mal_3cx_compromise_mar23.yar
+
+### Detect CVE-2022-30190 exploitation in Microsoft Office 
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_hafnium_log_sigs.yar
+https://blog.virustotal.com/2022/08/hunting-follina.html
+https://github.com/Neo23x0/signature-base/blob/007d9ddee386f68aca3a3aac5e1514782f02ed2d/yara/gen_doc_follina.yar#L96
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_doc_follina.yar
+
+
+### Detect CVE-2022-47966 exploitation in ManageEngine
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_solarwinds_sunburst.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_solarwinds_susp_sunburst.yar
+
+https://github.com/mandiant/red_team_tool_countermeasures/blob/master/all-yara.yar
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_manageengine_jan23.yar
+
+### Detect CVE-2021-44228 exploitation in Apache’s Log4j software library
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_log4j_cve_2021_44228.yar
+
+https://github.com/CiscoCXSecurity/log4j
+
+### Detect CVE-2021-26855 exploitation in Microsoft Exchange 
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_proxyshell.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_proxynotshell_owassrf_dec22.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_outlook_cve_2024_21413.yar
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_outlook_cve_2023_23397.yar
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_cve_2022_41040_proxynoshell.yar
+
+
+andesk
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/gen_anydesk_compromised_cert_feb23.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/exploit_f5_bigip_cve_2021_22986_log.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_teamcity_2023_42793.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_sharepoint_cve_2023_29357.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_ivanti_epmm_mobileiron_cve_2023_35078.yar
+
+cooenct wise
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/expl_connectwise_screenconnect_vuln_feb24.yar
+
+ivanti 
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_report_ivanti_mandiant_jan24.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_barracuda_esg_unc4841_jun23.yar
+
+
+<!-- PROD END-->
+
+
+
+
+
+
+
