@@ -1,8 +1,8 @@
 ---
-title: Part 6 - Behavioral hunting with VT modules
-description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
-date: 2024-04-27 12:00:00 -500
-categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+title: Part 13 - Behavioral hunting with VT modules
+description: Detection Engineering Using YARA Rules for Windows PE Files.
+date: 2024-04-28 12:00:00 -500
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara]
 pin: true
 math: true

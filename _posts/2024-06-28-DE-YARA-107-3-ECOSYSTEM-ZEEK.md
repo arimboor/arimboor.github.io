@@ -1,8 +1,8 @@
 ---
-title: Part 7.3 - Yara Ecosysyem . Zeek
-description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
+title: Part 11 - Yara Ecosysyem . Zeek
+description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-28 12:00:00 -500
-categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara, Zeek]
 pin: true
 math: true
