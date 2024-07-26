@@ -1,7 +1,7 @@
 ---
 title: Part 6 - Hunting for files with Timestamp Anomalies.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
-date: 2024-04-24 12:00:00 -500
+date: 2024-04-23 12:00:00 -500
 categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara]
 pin: true
