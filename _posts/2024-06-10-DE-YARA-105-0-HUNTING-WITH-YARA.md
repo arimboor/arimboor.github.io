@@ -29,6 +29,7 @@ malware emulation
 https://github.com/Neo23x0/signature-base/blob/master/yara/apt_saudi_aramco_phish.yar
 
 
+xx
 
 ## CASE 1 : Hunt for Packed Executables 
 
