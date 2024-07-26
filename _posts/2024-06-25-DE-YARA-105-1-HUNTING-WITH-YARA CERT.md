@@ -1,8 +1,8 @@
 ---
-title: Part 5.1 - Hunting with YARA - Stolen Cert.
-description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
-date: 2024-04-25 12:00:00 -500
-categories: [Detection Engineering, Analyzing Windows Files using YARA rules]
+title: Part 4 - Hunting for Signed files with stolen code-signing Cert.
+description: Detection Engineering Using YARA Rules for Windows PE Files.
+date: 2024-04-24 12:00:00 -500
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara]
 pin: true
 math: true

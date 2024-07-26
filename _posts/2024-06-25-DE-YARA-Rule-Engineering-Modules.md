@@ -1,7 +1,7 @@
 ---
 title: Part 3 - YARA Rule Engineering and Key Modules.
 description: Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.
-date: 2024-04-25 12:00:00 -500
+date: 2024-04-24 12:00:00 -500
 categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara]
 pin: true
