@@ -2,7 +2,7 @@
 title: Part 1 - Getting started with YARA and Windows PE Files. 
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-24 12:00:00 -500
-categories: [Detection Engineering, Bytes of Insights - YARA for IR & Hunting]
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
 tags: [Yara, Windows PE]
 pin: true
 math: true
