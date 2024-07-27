@@ -15,8 +15,8 @@ image:
 
 To build a YARA rule to detect malicious code, we would first need to analyze and extract interesting artifacts from the file. The following are common interesting artifacts found in a file, such as a Windows PE Executable. Please note that there could be other interesting artifacts as well that can be found, but it will be difficult to include all of them in the blog.
 
-
 ![dark mode only](/images/yara/ioc.PNG){: .dark   }
+![dark mode only](/images/yara/ioc.PNG){: .light }
 
 > **`Unique Strings`** can be anything, including a `typo error` in the code, as malware authors are often found in non-English speaking countries.
 {: .prompt-info }
@@ -25,40 +25,38 @@ To build a YARA rule to detect malicious code, we would first need to analyze an
 
 There are quite a few tools out there that can help to analyze the interesting artifacts in a file. Some of my favorite tools are listed below; however, use the one you are comfortable with. 
 
-
 ![dark mode only](/images/yara/extract_tools.PNG){: .dark   }
+![dark mode only](/images/yara/extract_tools.PNG){: .light   }
 
 Be careful when using automated rule creation tools such as YaraGen.py. This requires additional manual rule review before rolling out in a production environment.
 
 ### Option 1 : Using CyberChef
 
-add few images/ gif / videos files as examples 
-
-load exe -> extarct string -> run yara rule 
+Here, I will use the CyberChef tool to extract interesting artifacts from a Windows PE file.
 
 ### Option 2 : Using Strings
 
-add few images/ gif / videos files as examples 
+Here, I will use the Linux built-in utility to extract interesting artifacts from a Windows PE file.
 
 ###  Option 3 : Using FLOSS
 
-add few images/ gif / videos files as examples 
+Here, I will use the Mandiant FLOSS (FLARE Obfuscated String Solver) tool to extract interesting artifacts from a Windows PE file.
 
 ###  Option 4 : Using Ghidra
 
-add few images/ gif / videos files as examples 
+Here, I will use the Ghidra Tool to extract interesting artifacts from a Windows PE file.
 
 ###  Option 5 : Using YARA itself
 
-add few images/ gif / videos files as examples 
+Finally, we can use the YARA engine itself to extract interesting artifacts from a file.
 
-## Code Block vs Data Block ?
+## Code Block vs Data Block
 
 When writing a rule, we can create a high-fidelity rule that focuses on a specific malware sample associated with a particular campaign. Even though the rule detects the malware, the flip side is that when threat actors reuse the same malware for another campaign and change certain parameters, the rule cannot detect the new variant.
 
 In most cases, especially malware authors spend a significant amount of time developing the malware and often reuse certain underlying code bases such as **tunnel** techniques, **encryption** algorithms, antivirus **evasion** methods, data **exfiltration**, etc. Changing these code bases requires a significant amount of effort and time. 
 
-In some cases, I have seen threat actors deploy multiple variants of the same malware in an ongoing campaign by changing the C2 URL.
+In some cases, I have seen threat actors deploy multiple variants of the same malware in an ongoing campaign by changing the C2 URL only.
 
 In the analogy below, it's the same person but with small changes to the appearance. It looks different, but under the hood, it's all the same.
 
@@ -71,26 +69,3 @@ Having a rule focused on these code blocks can be a very good approach and can d
 
 > Code block-based YARA rules also helps to attribute the threat actor to an extent, but not always
 {: .prompt-info }
-
-
-<!-- PROD END-->
-
-
-
-<!-- 
-
-
-yaraQA : YARA rule Analyzer to improve rule quality and performance
-YARA-CI helps you to keep your YARA rules in good shape. It can be integrated into any GitHub repository containing YARA rules, and it will run automated tests every time you make some change. The automated tests include:
-
-
-
-
-
-
-
-
-
-
--->
-

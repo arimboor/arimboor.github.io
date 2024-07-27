@@ -419,6 +419,22 @@ int8(filesize-1) == 0x3b /* Trailer (trailes are often 0x00 byte padded and cann
 uint8(filesize-1) == 0x0a
 uint8(28) == 0x4D
 -->
+<!-- 
+
+
+yaraQA : YARA rule Analyzer to improve rule quality and performance
+YARA-CI helps you to keep your YARA rules in good shape. It can be integrated into any GitHub repository containing YARA rules, and it will run automated tests every time you make some change. The automated tests include:
+
+
+
+
+
+
+
+
+
+
+-->
 
 
 <!--
