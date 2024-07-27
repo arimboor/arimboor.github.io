@@ -69,3 +69,5 @@ Having a rule focused on these code blocks can be a very good approach and can d
 
 > Code block-based YARA rules also helps to attribute the threat actor to an extent, but not always
 {: .prompt-info }
+
+In the next section, we will explore how rule engineering to create effective detection patterns.
