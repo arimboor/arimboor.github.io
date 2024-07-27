@@ -8,7 +8,7 @@ pin: true
 math: true
 mermaid: true
 image:
-  path: /images/wallpaper_chik.jpg
+  path: /images/yara_main.png
   
 ---
 
