@@ -2,7 +2,7 @@
 title: Part 11 - Yara Ecosysyem . Zeek
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-18 12:00:00 -500
-categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response]
+categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response & Malware Hunting]
 tags: [Yara, Zeek]
 pin: true
 math: true
