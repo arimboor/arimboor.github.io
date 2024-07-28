@@ -32,7 +32,7 @@ https://www.youtube.com/watch?v=VljT6UytBg8&ab_channel=CyberD0M
 
 
 
-![dark mode only](/images/yara/yara_de_eng_1.drawio.png){: .dark   }
+![dark mode only](/images/yara/yara_de_eng_1_black.drawio.png){: .dark   }
 ![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  }
 
 
