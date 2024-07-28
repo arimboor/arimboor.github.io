@@ -13,6 +13,22 @@ image:
   alt: Responsive rendering of Chirpy theme on multiple devices.
 ---
 
+https://github.com/Neo23x0/signature-base/blob/master/yara/apt_stuxnet.yar
+https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_proxynotshell_cve_2022_41040.yar
+https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_moveit_0day_jun23.yar
+
+keepass
+https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_keepass_brute_forcible.yar
+
+https://github.com/Neo23x0/signature-base/blob/master/yara/vul_confluence_questions_plugin_cve_2022_26138.yar
+https://github.com/Neo23x0/signature-base/blob/master/yara/vul_cve_2020_0688.yar
+
+webshell
+https://github.com/Neo23x0/signature-base/blob/master/yara/thor-webshells.yar
+
+hacktool
+https://github.com/Neo23x0/signature-base/blob/master/yara/thor-hacktools.yar
+
 
 https://eclecticlight.co/2024/04/30/apple-has-just-released-updates-to-xprotect-and-xprotect-remediator-12/
 
@@ -34,3 +50,14 @@ https://www.youtube.com/watch?v=p75adsXeHLg&ab_channel=CloudandRoll
 https://helpcenter.veeam.com/docs/backup/vsphere/malware_detection_scan_backup_yara.html?ver=120
 https://youtu.be/-fSg1BSbcTk
 https://www.veeam.com/vmware-esx-backup.html
+
+how to use clamav with yara rule 
+
+save to clamavportal\database folder on windows OS 
+
+
+```bash
+./clamav -v "c:\virus.exe"
+https://youtu.be/VljT6UytBg8
+```
+

@@ -16,21 +16,41 @@ image:
 
 ## Approach
 
-hhex 
-https://www.youtube.com/watch?v=jHz8fD9TqZw&ab_channel=InsaneCyber
-https://www.youtube.com/watch?v=VljT6UytBg8&ab_channel=CyberD0M
 
 
 
 
-![dark mode only](/images/yara/approach.PNG){: .dark  .w-75  .rounded-10 w='2212' h='768' }
-![light mode only](/images/yara/approach.PNG){:  .light .w-75  .rounded-10 w='2212' h='768' }
+![Desktop View](/images/yara/yara_approach.drawio.png)
+
+
+
 
 ## What are the building blocks
+
+text here 
 
 ![Desktop View](/images/yara/car_open.jpg){: width="672" height="289" .w-50 .left}
 
 
+![Desktop View](/images/yara/regex.jpg){: width="672" height="289" .w-50 .left}
+
+```bash
+all of them
+any of them
+2 of ($a,$b,$c)
+3 of them
+4 of ($a*)
+$a and not $b
+(not $a) and (filesize > 0)
+math.entropy(0, filesize) >= 7.0
+filesize < 60KB and ( 1 of ($x*) or all of ($s*) )
+```
+
+text here 
+
+![Desktop View](/images/yara/yara_de_image2.drawio.png)
+
+text here 
 
 ![dark mode only](/images/yara/yara_de_eng_1_black.drawio.png){: .dark  width="672" height="289" .w-50  }
 ![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  width="672" height="289" .w-50 }
@@ -54,9 +74,85 @@ base64wide	|Text	|Convert to 3 base64 encoded strings, then interleaving null ch
 fullword	|Text, Regex	|Match is not preceded or followed by an alphanumeric character	
 
 
+nocase 	case-insensitive mode 
+ascii 	coding with one byte per character 
+wide 	coding with two bytes per character 
+fullword 	match only if delimited by non-alphanumeric characters 
+
+write a using chatgpt for regex 
+
+this is good reference point for regex in yara https://engineering.avast.io/know-your-yara-rules-series-5-everything-you-need-to-know-about-regular-expressions-in-yara/
+
+loops
+
+```bash
+for all of them : 
+for all of ($a*) :
+for any section in pe.sections : ( section.name == ".text" )
+for any i in (0..pe.number_of_sections-1) : ( pe.sections[i].name == ".text" )
+
+```
+
+
+key modules
+
+```bash
+pe. is_pe
+math.entropy
+pe.timestamp
+dotnet.number_of_resources
+pe.signatures.serial 
+hash.sha256
+magic.mime_type
+Math.entropy
+```
 
 
 
+![Desktop View](/images/yara/yara_de_modules.drawio.png)
+
+gloabal keyword
+
+Global Keyword help to enforce restrictions in all the rules at once.
+
+```bash
+Import "pe"
+global rule GlobalRule
+    {
+     condition:
+         filesize < 1MB and 
+     pe.is_pe and
+    not pe.is_signed
+    }
+rule rule1 { …. }
+rule rule2 { …. }
+rule rule3 { …. }
+```
+
+Private Keyword suppress the output when match on a given file and prevent cluttering the outputs.
+
+
+```bash
+private rule rule1 { …}
+private rule rule2 { …}
+private rule rule3 { …}
+rule rule4{ …. }
+rule rule5 { …. }
+rule rule6 { …. }
+```
+
+include Keyword help to organize the rules in rule files. For example webshell.yara rule can include multiple webshell yara rules as shown. 
+
+```bash
+include "/sftp//yara/includes/c99.yar"
+include "/sftp//yara/includes/chinaC.yar"
+include "/sftp//yara/includes/asp.yar"
+include "/sftp//yara/includes/php.yar"
+include "/sftp//yara/includes/iis.yar"
+include "/sftp//yara/includes/other.yar"
+```
+
+![Desktop View](/images/yara/matrix1.jpg)
 
 private |	Hex, Text, Regex|	Match never included in output
 
@@ -71,10 +167,24 @@ groups
 if anythinf doent make senes efor ascisi make it hex
 
 
+if you dont know the value then you can use the place holder charactor ??
 
 wildcards | { 6D 81 6C **`??`** **`??`** 72 65 }
 jumps | { 6D 81 6C **`[1-3]`** 65 }
 alternatives | { **`(6D | 7D)`** 61 6C 77 61 72 65 }
+
+match 6D 81 6C  and jump a space or jump 1 to 3 (range )spaces 
+
+
+jumps 
+
+1
+1-3
+50-100
+50- -> infinite jump and look for teh othe rmatch
+[-] - from o to infite
+
+either 6D or 7D . when there is a uncertitinty 
 
 
 ### Building rules :  Operators / Loops
@@ -86,7 +196,7 @@ alternatives | { **`(6D | 7D)`** 61 6C 77 61 72 65 }
 Modules have functions which can be used when writing a YARA rule. They often do the heavy lifting so that we can write less code when developing rules. Consider it as modules we import in programming languages such as Python in order to reuse existing code to achieve something. This will ease our work.
 
 
-![dark mode only](/images/yara/modules.PNG){: .dark   }
+
 
 Here is the link to all available modules. Have a look before writing your next YARA rule; there may be something already there.
 
@@ -122,25 +232,14 @@ I'll primarily use this module for debugging rules or for file analysis itself. 
 
 <!-- PROD End -->
 
-https://engineering.avast.io/know-your-yara-rules-series-5-everything-you-need-to-know-about-regular-expressions-in-yara/
 
 
-https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_proxynotshell_cve_2022_41040.yar
-https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_moveit_0day_jun23.yar
 
-keepass
-https://github.com/Neo23x0/signature-base/blob/master/yara/vuln_keepass_brute_forcible.yar
 
-https://github.com/Neo23x0/signature-base/blob/master/yara/vul_confluence_questions_plugin_cve_2022_26138.yar
-https://github.com/Neo23x0/signature-base/blob/master/yara/vul_cve_2020_0688.yar
-
-webshell
-https://github.com/Neo23x0/signature-base/blob/master/yara/thor-webshells.yar
-
-hacktool
-https://github.com/Neo23x0/signature-base/blob/master/yara/thor-hacktools.yar
 
 ## IOC
+
+```bash
 
 strings:
       $xip1 = "98.176.196.89" ascii fullword 
@@ -149,7 +248,8 @@ strings:
       $xip4 = "144.34.179.162" ascii fullword
       $xip5 = "97.77.97.58" ascii fullword
 
-https://github.com/Neo23x0/signature-base/blob/master/yara/apt_stuxnet.yar
+```
+
 ## pdb
 
 ```text
@@ -177,11 +277,10 @@ c:\Users\user\Desktop\ImageAgent\ImageAgent\PreAgent\src\builder\agent.pdb
 Decoding Magic Numbers 
 
 
-![Desktop View](/images/yara/magic_numbers.png)
-_Full screen width and center alignment_
+![Desktop View](/images/yara/yara_magic_numbers.drawio.png)
 
 
-![Desktop View](/images/yara/edited_packing.gif)
+
 
 
 We can write rule conditions that depend on data stored at a certain file offset or memory virtual address, using the following functions,
@@ -228,12 +327,6 @@ uint32(0) == 0x53514c69 | sqlite signature at offset 0 |
 uint32(0) == 0x89504e47 | png signature at offset 0 | 
 
 <!-- one note check this E4 52 5C 7B 8C D8 A7 4D AE B1 53 78 D0 29 96 D3 -->
-
-
-
-
-
-<!-- prod above -->
 
 
 
@@ -435,14 +528,6 @@ yaraQA : YARA rule Analyzer to improve rule quality and performance
 YARA-CI helps you to keep your YARA rules in good shape. It can be integrated into any GitHub repository containing YARA rules, and it will run automated tests every time you make some change. The automated tests include:
 
 
-
-
-
-
-
-
-
-
 -->
 
 
@@ -481,7 +566,6 @@ https://github.com/Neo23x0/signature-base/blob/master/yara/gen_google_anomaly.ya
 https://github.com/Neo23x0/signature-base/blob/master/yara/gen_fireeye_redteam_tools.yar
 https://github.com/Neo23x0/signature-base/blob/master/yara/gen_file_anomalies.yar
 https://github.com/Neo23x0/signature-base/blob/master/yara/gen_excel_auto_open_evasion.yar
--->
 
 https://www.linkedin.com/pulse/yara-rules-assembly-emeka-agu/
 
@@ -508,6 +592,9 @@ ecoding formasr - file or network data
  wanncry - for classifcation
 
  https://github.com/Neo23x0/signature-base/blob/master/yara/crime_wannacry.yar
+-->
+
+
 
 
 <!-- 
