@@ -1,5 +1,5 @@
 ---
-title: Part 7 - Hunting for Packed PE Files.
+title: Part 7 - Hunting for Packed PE executables.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-23 12:00:00 -500
 categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response & Malware Hunting]
@@ -12,51 +12,13 @@ image:
   
 ---
 
-<!--PROD -->
-
-![Desktop View](/images/yara/gpt_x64.png){: width="568" height="468" }5
 
 
-![Desktop View](/images/yara/timestomp.PNG)
+ <!-- add video for the packed exec-->
 
+The following example illustrates various approaches to detecting Windows packed executables.
 
-
-```bash
-import "pe"
-rule timestmping
-  {
-  condition:
-    uint16(0) == 0x5A4D and
-    (pe.machine ==  pe.MACHINE_AMD64 or pe.machine == pe.MACHINE_IA64) and 
-    pe.timestamp < 1114435200 // April 25 2005
-  }
-```
-<!--PROD End-->
-
-
-https://www.youtube.com/watch?v=PEy-l6fduHo&ab_channel=JohnHammond
-https://www.youtube.com/watch?v=4Qo8aKi9aKw&ab_channel=JaiMinton -> havoc C2
-https://github.com/JPMinty/Detection_Engineering_Signatures/blob/main/yara/win_havoc_c2_demon_API_hashes.yar
-
-https://aws.amazon.com/blogs/apn/best-practices-from-infopercept-on-malware-detection-with-yara-rules-and-shu%EF%AC%84e-soar/
-
-
-get a diak image or mem with cobaltstike trhen try becon or C2 
-
-https://github.com/Yara-Rules/rules/blob/master/email/Email_generic_phishing.yar
-
-https://github.com/mandiant/speakeasy 
-
-malware emulation 
-
-https://github.com/Neo23x0/signature-base/blob/master/yara/apt_saudi_aramco_phish.yar
-
-
-xx
-
-## CASE 1 : Hunt for Packed Executables 
-
-> example 1
+- In this example, the rule is looking for specific keywords a.k.a signatures, in a PE sections. By default, some packers add certain keywords to the PE headers to include their signature. This can be used as a detection method when writing a rule. Please note that adding such keywords to the PE header is optional, and someone could deliberately add keywords to deceive malware analysts.
 
 ```bash
 import "pe"
@@ -68,7 +30,7 @@ rule basedOnString
 }
 ```
 
-> example 2
+- In the example, the rule is looking for file entries.
 
 ```bash
 import "math"
@@ -78,7 +40,7 @@ rule basedOnEntropy {
 }
 ```
 
-> example 3
+- Instead of calculating the entropy for the entire file, which may not always be useful, the example calculates the entropy for each section. In general, an entropy value above 7.5 is something worth analyzing.
 
 ```bash
 import "pe"
@@ -92,8 +54,3 @@ rule basedOnEntropy
 ```
 
 
-
-
-## CASE 1 : Hunt for maldocs 
-
-## CASE 1 : Hunt for Cobaltstike beacons 
