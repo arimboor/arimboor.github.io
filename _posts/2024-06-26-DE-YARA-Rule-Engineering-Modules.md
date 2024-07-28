@@ -16,23 +16,31 @@ image:
 
 ## Approach
 
+To understand the concept of rule engineering, we can break it down into three key phases.
 
-
-
+First, we start by identifying the type of target file we’re dealing with. Next, we look for interesting artifacts that can be used to craft the detection rules. Finally, we convert these identified artifacts into patterns.
 
 ![Desktop View](/images/yara/yara_approach.drawio.png)
 
+## Building blocks for Rules
+
+In a well-written YARA rule, it's beneficial to include several key sections, although you can skip some of them if necessary. The essential section you must include is the "condition" section. However, I strongly recommend using all the following sections,
+
+![dark mode only](/images/yara/yara_de_eng_1_black.drawio.png){: .dark  width="572" height="289" .w-50  }
+![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  width="572" height="289" .w-50 }
+
+Believe me, If someone reviews your rule later, they will appreciate having the complete context and rationale behind it. 
+
+Here are some key concepts I'll cover in this section. However, it's important to note that covering every nuance of rule engineering is not feasible. For a more comprehensive understanding, I recommend the official YARA documentation.
+
+![Desktop View](/images/yara/yara_de_image2.drawio.png)
+
+
+<!-- ![Desktop View](/images/yara/car_open.jpg){: width="672" height="289" .w-50 .left}-->
 
 
 
-## What are the building blocks
 
-text here 
-
-![Desktop View](/images/yara/car_open.jpg){: width="672" height="289" .w-50 .left}
-
-
-![Desktop View](/images/yara/regex.jpg){: width="672" height="289" .w-50 .left}
 
 ```bash
 all of them
@@ -48,12 +56,11 @@ filesize < 60KB and ( 1 of ($x*) or all of ($s*) )
 
 text here 
 
-![Desktop View](/images/yara/yara_de_image2.drawio.png)
+
 
 text here 
 
-![dark mode only](/images/yara/yara_de_eng_1_black.drawio.png){: .dark  width="672" height="289" .w-50  }
-![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  width="672" height="289" .w-50 }
+
 
 
 hex byte 
@@ -325,6 +332,9 @@ uint16(0) == 0x004c | Windows lnk signature at offset 0|
 uint32(0) == 0x25504446 | pdf signature at offset 0| 
 uint32(0) == 0x53514c69 | sqlite signature at offset 0 | 
 uint32(0) == 0x89504e47 | png signature at offset 0 | 
+
+![Desktop View](/images/yara/regex.jpg){: width="672" height="289" .w-50 .left}
+
 
 <!-- one note check this E4 52 5C 7B 8C D8 A7 4D AE B1 53 78 D0 29 96 D3 -->
 
