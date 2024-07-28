@@ -1,5 +1,5 @@
 ---
-title: Part 6 - Hunting for files with Timestamp Anomalies.
+title: Part 7 - Hunting for Packed PE Files.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-23 12:00:00 -500
 categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response & Malware Hunting]
@@ -12,17 +12,14 @@ image:
   
 ---
 
-Sometimes, it takes common sense rather than just technical skills to uncover malware code. This example is based on the research published by Kaspersky Labs on TripleFantasy.The research team discovered the following sample, and upon analyzing the basic timestamp details, they noticed that the file was compiled on June 3, 2000, and is a 64-bit binary.
+<!--PROD -->
+
+![Desktop View](/images/yara/gpt_x64.png){: width="568" height="468" }5
+
 
 ![Desktop View](/images/yara/timestomp.PNG)
 
-I used ChatGPT to ask a question related to the Windows 64-bit operating system. 
 
-![Desktop View](/images/yara/gpt_x64.png){: width="568" height="468" }
-
-This clearly indicates when Microsoft first released the 64-bit operating system. This means the executable should be analyzed.
-
-Here is the YARA rule to look for a Windows 64-bit executable with a specified timestamp:
 
 ```bash
 import "pe"
@@ -36,7 +33,6 @@ rule timestmping
 ```
 <!--PROD End-->
 
-<!-- 
 
 https://www.youtube.com/watch?v=PEy-l6fduHo&ab_channel=JohnHammond
 https://www.youtube.com/watch?v=4Qo8aKi9aKw&ab_channel=JaiMinton -> havoc C2
@@ -55,4 +51,49 @@ malware emulation
 
 https://github.com/Neo23x0/signature-base/blob/master/yara/apt_saudi_aramco_phish.yar
 
--->
+
+xx
+
+## CASE 1 : Hunt for Packed Executables 
+
+> example 1
+
+```bash
+import "pe"
+rule basedOnString
+{
+    condition:
+        for any i in (0 .. pe.number_of_sections): 
+            (pe.sections[i].name == ".aspack")
+}
+```
+
+> example 2
+
+```bash
+import "math"
+rule basedOnEntropy {
+  condition:
+    math.entropy (0, filesize) > 7
+}
+```
+
+> example 3
+
+```bash
+import "pe"
+import "math"
+rule basedOnEntropy
+{
+    condition:
+    for any resource in pe.resources: ( 
+    math.in_range(math.entropy(resource.offset, resource.length),7.8, 8.0))
+}
+```
+
+
+
+
+## CASE 1 : Hunt for maldocs 
+
+## CASE 1 : Hunt for Cobaltstike beacons 
