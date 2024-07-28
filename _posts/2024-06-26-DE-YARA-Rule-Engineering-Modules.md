@@ -194,24 +194,11 @@ hash.sha256
 magic.mime_type
 ```
 
-
-
-
-
-## 
--->
-
 ## Identify File Types 
 
-
-Decoding Magic Numbers 
-
+When working with YARA, you may encounter different types of files, and identifying the file type can sometimes be daunting. However, don’t worry YARA provides multiple ways to define the file type, particularly based on byte sequences and their locations.
 
 ![Desktop View](/images/yara/yara_magic_numbers.drawio.png)
-
-
-
-
 
 We can write rule conditions that depend on data stored at a certain file offset or memory virtual address, using the following functions,
 
@@ -220,45 +207,32 @@ We can write rule conditions that depend on data stored at a certain file offset
 **int** 8/16/32**be** | reads 8, 16, and 32 bits signed integers  -` big-endian` format | 
 **uint** 16/32**be** | reads 16, and 32 bits signed integers  - `big-endian` format | 
 
-
 > In a `little-endian` format the byte order is reversed with the most significant byte on the right
 {: .prompt-tip }
 
-Here are some of the most commonly used magic numbers I have come across while writing rules
+Here are some of the most commonly used byte sequences, also known as `magic numbers`, that I have come across while writing rules:
 
 **Magic Number** | **Description** | 
 uint16(0) == 0x5a4d | MZ signature at offset 0 |
 uint16be(0) == 0x4D5A | MZ signature at offset 0 | 
-uint32(uint32(0x3C)) == 0x00004550 | PE signature at offset stored in MZ header at 0x3C | 
-uint32be(0) == 0x7f454c46 | Linux ELF signature at offset 0 | 
 uint16(0) == 0x457f | Linux ELF signature at offset 0| 
+uint32be(0) == 0x7f454c46 | Linux ELF signature at offset 0 | 
 uint32(0) == 0xfeedface | MacOS macho2 |
 uint32(0) == 0xfeedfacf | MacOS macho64 | 
 uint32(0) == 0xcefaedfe | MacOS macho64_2 | 
 uint32(0) == 0xcffaedfe | MacOS macho64_3 | 
-uint32be(0) == 0x504b0304 | unencrypted xlsx,  pkzip, DOCX, PPTX, XLSX (PKZIP) |
-int16(0) == 0x4B50 | pkzip | 
-uint32be(0) == 0xd0cf11e0 | encrypted xlsx = CDFV2  DOC, PPT, XLS |
 uint16(0) == 0xcfd0 | Word/Office Document| 
-uint32be(0) == 0x7B5C7274 | RTF signature at offset 0| 
 uint32(0) == 0x74725C7B | rtf signature at offset 0| 
-uint32be(0) == 0x4d494d45 | MIME header |
-uint32(0) == 0x21726152 | Rar! | 
 uint32(0) == 0x52617221 | rar signature at offset 0 | 
 uint32(0) == 0x04034b50 | zip signature at offset 0 | 
 uint16(0) == 0x1f8b | gzip signature at offset 0 | 
 uint32(0) == 0x377abcaf |  7zip signature at offset 0 | 
 uint32(0) == 0x75737461 | tar signature at offset 0| 
-uint32(32769) == 0x43443030 | iso |
-uint32be(0) == 0x3c3f786d | <?xm |
 uint16(0) == 0x004c | Windows lnk signature at offset 0| 
 uint32(0) == 0x25504446 | pdf signature at offset 0| 
-uint32(0) == 0x53514c69 | sqlite signature at offset 0 | 
-uint32(0) == 0x89504e47 | png signature at offset 0 | 
+ 
 
-
-
-![Desktop View](/images/yara/matrix1.jpg)
+![Desktop View](/images/yara/matrix1.jpg){: width="672" height="289" .w-50}
 
 <!-- one note check this E4 52 5C 7B 8C D8 A7 4D AE B1 53 78 D0 29 96 D3 -->
 
@@ -321,49 +295,6 @@ rule INFO_ASPACK_PACKER {
 }
 ```
 
-```bash
-rule INDICATOR_EXE_Packed_VMProtect {
-    meta:
-        author = "ditekSHen"
-        description = "Detects executables packed with VMProtect."
-        snort2_sid = "930049-930051"
-        snort3_sid = "930017"
-    strings:
-        $s1 = ".vmp0" fullword ascii
-        $s2 = ".vmp1" fullword ascii
-    condition:
-        uint16(0) == 0x5a4d and all of them or
-        for any i in (0 .. pe.number_of_sections) : (
-            (
-                pe.sections[i].name == ".vmp0" or
-                pe.sections[i].name == ".vmp1"
-            )
-        )
-}
-```
-
-```bash
-rule INDICATOR_EXE_Packed_LLVMLoader {
-    meta:
-        author = "ditekSHen"
-        description = "Detects LLVM obfuscator/loader"
-        clamav_sig = "INDICATOR.Packed.LLVMLoader"
-    strings:
-        $s1 = "exeLoaderDll_LLVMO.dll" fullword ascii
-        $b = { 64 6c 6c 00 53 74 61 72 74 46 75 6e 63 00 00 00
-               ?? ?? 00 00 00 00 00 00 00 00 00 ?? 96 01 00 00
-               ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-               00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? 00 00
-               00 00 00 00 00 00 00 00 00 00 00 ?? ?? 45 78 69
-               74 50 72 6f 63 65 73 73 00 4b 45 52 4e 45 4c 33
-               32 2e 64 6c 6c 00 00 00 00 00 00 }
-    condition:
-        (uint16(0) == 0x5a4d or uint16(0) == 0x0158) and ((pe.exports("StartFunc") and 1 of ($s*)) or all of ($s*) or ($b))
-}
-```
-
-
-
 
 https://www.youtube.com/watch?v=fWV8Dh_RBZU&ab_channel=MalwareAnalysisForHedgehogs
 https://securelist.com/the-devils-in-the-rich-header/84348/
@@ -373,88 +304,6 @@ https://github.com/RichHeaderResearch/RichPE
 
 
 
-
-
-<!--
-int16(uint32(0x3C) + 0x5c) == 0x0001
-uint16(0) == 0x3f3c 
-uint16(0) == 0x253c
-uint16(0) == 0x6568 
-uint16(0) == 0x7566
-uint16(0) == 0x457f
-uint16(0) == 0xfeff
-uint16(0) == 0x2123
-uint16(0) == 0x004c 
-uint16(0) == 0x3558
-uint16(0) == 0xcfd0
-uint16(0) == 0x4b50
-uint16(0) == 0x7375
-uint16(0) == 0x7566
-uint16(0) == 0x0d7b
-uint16(0) == 0xfeca 
-uint16(0) == 0xfacf 
-uint16(0x10) == 0x0002
-uint16(0) == 0xedac
-uint16(0) == 0xb0b0 // AV sigs file
-uint16(0) == 0x5953 // AV sigs file
-uint16be(filesize-2) == 0x2722 or  /* Footer 1 */
-uint16(0) == 0x004c 
-uint16(0) == 0x6152
-uint16(0) == 0x4947 
-uint16(0) == 0x6620
-uint16(0) == 0x7473
-uint16(filesize-3) == 0x0d25 
-uint16(uint32(0x3C)+0x18) == 0x020B
-uint16(0) == 0x544
-uint16(0) == 0x5A4D 
-uint16(0) == 0xCFD0 
-uint16(0) == 0xC3D4 
-uint16(0) == 0xfacf 
-uint16(0) == 0x4b50
-uint16(0) == 0x2123
-uint16(0) == 0x6553
-uint32(0) == 0x4D583F3C or uint32(0) == 0x6D78F3C ) /* <?XM or <?xm */
-uint32(0) == 0x66676572 // not regf (registry hives)
-uint32(0) == 0xE011CFD0
-uint32(4) == 0x464c457f
-uint32(0x28) == 0x00000000
-uint32(0x28) == uint32(0x2c)
-uint32(0) == 0x434d5953 // Symantec AV sigs file
-int32(uint32(0x3c) ^ uint32(0x28)) ^ uint32(0x28) == 0x00004550
-uint32(0) == 0x464c457f 
-uint32(0) == 0xBEBAFECA 
-uint32(0) == 0xFEEDFACE 
-uint32(0) == 0xFEEDFACF 
-uint32(0) == 0xCEFAEDFE
-uint32(4) == 0x00021401
-uint32be(0) == 0x696d706f // import
-uint32(0) == 0x752f2123  ! may be macos
-uint32(0) == 0x0000004c 
-uint32be(0) == 0x41747472 
-uint32be(0) == 0x61747472 
-uint32be(0) == 0x41545452  //File start with Attribute
-uint32(0) == 0x46445025 
-uint32(1) == 0x6674725C
-uint32(uint32(0x3C)) == 0x0000AD0B /* malformed PE header > 0x0bad */
-uint32(0) == 0x4e4f435b
-uint32(uint32(0x3C)) == 0x00004550 
-uint32(0) == 0x2D2D2D2D
-uint32(0) == 0x4450250a
-uint32be(0x0) == 0x4C000000
-uint32be(0) == 0x7B5C7274
-(uint32(0) == 0x616f733c or uint32(0) == 0x54534f50)  //'<soa' or 'POST'   
-uint32be(0) == 0xD0CF11E0
-uint32(0) == 0x46445025
-uint8(4) == 0x66 
-uint8(5) == 0x31 
-uint8(6) == 0x5c
-uint8(2) == 0x46 /* GIF */
-uint8(11) == 0x00 /* Background Color Index != 0 */
-uint8(12) == 0x00 /* Pixel Aspect Ratio != 0 */
-int8(filesize-1) == 0x3b /* Trailer (trailes are often 0x00 byte padded and cannot server as sole indicator) */
-uint8(filesize-1) == 0x0a
-uint8(28) == 0x4D
--->
 <!-- 
 
 
@@ -533,6 +382,8 @@ ecoding formasr - file or network data
 
 <!-- 
 ### What to avoid ?
+
+
 rule SUSP_TH_APT_UNC4736_TradingTech_Cert_Apr23_1 {
    meta:
       description = "Threat hunting rule that detects samples signed with the compromised Trading Technologies certificate after May 2022"
@@ -629,182 +480,27 @@ OR
 ```
 
 
-metedata 
-imprts
-stoings 
-condtions 
-
-string mosifiers 
-
-
-yoiu can store 1000 rules ina asigle rule 
-
-
-## strings are the content
-
-text , regex, hex 
-
-
-modidier 
-
-
-defauklt ascii & case senstive 
-
-nocase = case insenetive 
-
-wide -> UTF16 -> null spaces after each latetr 
-
-fullword -> delimeyed by non-alphanumeric char = +jinto+ not jintoA
-
-base64 & base64wide (may be powersell scroiopt)
-
-xor = single byte xor
-alkso provide options with XOR with keys or XOR with set of keys 
-
-xor[0x3c] -> signe key
-
-xor[ox01 0xff] -> rang of keys
-
-
-demo on extractinf using stongs 
-
-findout a sample for sting extarction 
-
-
-regex basic 
------------
-
-
-/  /i = case in sensetive 
-
-concept of atom and serching 
-
-
-
-find out some interestinf ara rukes with regex and add it 
-
-use cybeehf to wite cyberchef 
-
-
-hex
----
 
 
 
 
-## modules
 
-entropy
-pe
+
+
+
+
 
 yaya -D
 
 
-## condtions
-
-loop
-
-contins , i contins, startwrih, wndwideth, macthces 
-
-for all xxx in xx
-
-
-expaling console.hex to explain the MZ header  
 
 pe.timestamp vs pe.export_timestamp 
-
-read the blog and find out any interesting sampoles 
-
-not looking for ascii sting : string or stings.exe
-
-utf16 = wide 
-
-write one rule and optimze it known goodwares 
-
-first verty specfic and another one more looose 
-
-just find out the pe infomation on the file 
-
-```bash
-import "pe"
-    rule PE_Debug_Rule 
-    {
-        conditon:
-            true
-    }
-```
-
-too many resousrce in pe head is abnormal ? find 
-export dll is normal ?
-
-
-what is TTP rule 
-
-write rule from TTP blog to demo the threal intel and malware classification 
-
-goodwares 
-
-dowanload windows iso an unzip with 7 ziop thsts it 
-
-create windows 11 and 10 on inux and scan using velociraptor 
-
-
-
-
-hunt based news -> certificate stlen 
-
-
-
-
-
-typoical initial entry -> exel -> vba + dowper > infection 
-
-next stage 
-
-powershell 
-
-
-next stage 
-
-exe, dll, 
-elf
-
-mach-o
-
-
-
-
-windows ecurtaia -> exe/ dll / .net
-
-linux
-elf
-
-mac
-machO
-DMG
-
-slide for workflow for malware infection & data leakge (hunt for confidential document)
-
-vlociraprt -> how to add more than one path on uara.glob 
-
-
-
-take a very famoyus sample like wanncry and find out w how ro do classifiction 
-
-how to do a stings analysis on multipl file ? any script ot tools available ? ceck 
-
-
-
-
-
-
 
 what ware exports
 -----------------
 dll ( export the funcytion )
 exe  ( mostly oiport function) & the exoirt is very linitef
 pe.export_timestip = time of he export dietctory was created on the ee , its in the epich : can find timestobing ?
-
 
 pe.nuber_of_exports 
 pe.export_deatils
