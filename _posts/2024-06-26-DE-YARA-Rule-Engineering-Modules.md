@@ -12,8 +12,6 @@ image:
   
 ---
 
-<!-- PROD -->
-
 ## Approach
 
 To understand the concept of rule engineering, we can break it down into three key phases.
@@ -38,38 +36,42 @@ Here are some key concepts I'll cover in this section. However, it's important t
 
 <!-- ![Desktop View](/images/yara/car_open.jpg){: width="672" height="289" .w-50 .left}-->
 
+### Define Patterns 
+
+Patterns are the core of any rule, and the effectiveness of your rules largely depends on your expertise in file analysis. There are three primary ways to define patterns within a rule:
+
+- ASCII Strings: Define patterns based on plain text strings found within the file.
+- Hexadecimal Byte Sequences: Patterns are defined based on specific sequences of bytes (This is one of the most common approaches).
+- Regular Expressions: Define complex patterns Using regex.
+
+>The HEX patterns are written inside `{ }` and REGEX patterns are written inside`/ /` 
+{: .prompt-tip }
 
 
+It's good to know how hex patterns are written in the rule. I have covered a few commonly used patterns that may be useful when you get started with defining the rules.
 
+Wildcards | { 6D 81 6C **`??`** **`??`** 72 65 }
+Alternatives | { **`(6D | 7D)`** 61 6C 77 61 72 65 }
+Jumps | { 6D 81 6C **`[1-3]`** 65 }
 
-```bash
-all of them
-any of them
-2 of ($a,$b,$c)
-3 of them
-4 of ($a*)
-$a and not $b
-(not $a) and (filesize > 0)
-math.entropy(0, filesize) >= 7.0
-filesize < 60KB and ( 1 of ($x*) or all of ($s*) )
+`Wildcards` are used when you don't know the exact value. You can use placeholder characters ?? to represent unknown bytes.
+
+`Alternatives` can be used when there is uncertainty. For example, you might specify a pattern to match either "AA" or "BB."
+
+`Jumps` are very useful when writing rules. There are different types of jumps you can define when creating rules as shown below.
+
+```text
+[1] -> Junp one byte and look for the pattern defind after this jump.
+[1-3] -> Specify the Range and look for the pattern defind after this jump.
+[40-80] -> Specify the Range and look for the pattern defind after this jump.
+[40-] -> Infinite jump and look for the pattern defind after this jump.
+[-] -> Jump from 0 to Infinite and look for the pattern defind after this jump.
 ```
 
-text here 
 
+<!-- ![Desktop View](/images/yara/regex.jpg){: width="672" height="289" .w-50 .left} -->
 
-
-text here 
-
-
-
-
-hex byte 
-https://www.malwarebytes.com/blog/news/2013/10/using-yara-to-attribute-malware
-
-
-### Building rules :  define patterns 
-
-#### Modifiers 
+### Define Modifiers 
 
 **Keyword**	|**String Types**|	**Notes**|
 nocase	|Text, Regex	| Ignore case	
@@ -90,6 +92,24 @@ write a using chatgpt for regex
 
 this is good reference point for regex in yara https://engineering.avast.io/know-your-yara-rules-series-5-everything-you-need-to-know-about-regular-expressions-in-yara/
 
+### Define conditions
+
+
+```bash
+all of them
+any of them
+2 of ($a,$b,$c)
+3 of them
+4 of ($a*)
+$a and not $b
+(not $a) and (filesize > 0)
+math.entropy(0, filesize) >= 7.0
+filesize < 60KB and ( 1 of ($x*) or all of ($s*) )
+```
+
+
+### Define Loops
+
 loops
 
 ```bash
@@ -99,6 +119,7 @@ for any section in pe.sections : ( section.name == ".text" )
 for any i in (0..pe.number_of_sections-1) : ( pe.sections[i].name == ".text" )
 
 ```
+
 
 
 key modules
@@ -159,44 +180,11 @@ include "/sftp//yara/includes/iis.yar"
 include "/sftp//yara/includes/other.yar"
 ```
 
-![Desktop View](/images/yara/matrix1.jpg)
-
-private |	Hex, Text, Regex|	Match never included in output
-
-hex patterns 
-
-on raw bytes
-
-nible
-jump, 
-groups
-
-if anythinf doent make senes efor ascisi make it hex
 
 
-if you dont know the value then you can use the place holder charactor ??
-
-wildcards | { 6D 81 6C **`??`** **`??`** 72 65 }
-jumps | { 6D 81 6C **`[1-3]`** 65 }
-alternatives | { **`(6D | 7D)`** 61 6C 77 61 72 65 }
-
-match 6D 81 6C  and jump a space or jump 1 to 3 (range )spaces 
 
 
-jumps 
 
-1
-1-3
-50-100
-50- -> infinite jump and look for teh othe rmatch
-[-] - from o to infite
-
-either 6D or 7D . when there is a uncertitinty 
-
-
-### Building rules :  Operators / Loops
-
-### Building rules : define conditions
 
 ### Building rules :  modules 
 
@@ -333,8 +321,9 @@ uint32(0) == 0x25504446 | pdf signature at offset 0|
 uint32(0) == 0x53514c69 | sqlite signature at offset 0 | 
 uint32(0) == 0x89504e47 | png signature at offset 0 | 
 
-![Desktop View](/images/yara/regex.jpg){: width="672" height="289" .w-50 .left}
 
+
+![Desktop View](/images/yara/matrix1.jpg)
 
 <!-- one note check this E4 52 5C 7B 8C D8 A7 4D AE B1 53 78 D0 29 96 D3 -->
 
