@@ -21,12 +21,21 @@ https://www.youtube.com/watch?v=jHz8fD9TqZw&ab_channel=InsaneCyber
 https://www.youtube.com/watch?v=VljT6UytBg8&ab_channel=CyberD0M
 
 
-![dark mode only](/images/yara/approach.PNG){: .dark   }
 
+
+![dark mode only](/images/yara/approach.PNG){: .dark   }
+![light mode only](/images/yara/approach.PNG){:  .light  }
 
 ## What are the building blocks
 
- 
+![Desktop View](/images/yara/car_open.jpg){: width="672" height="289" .w-50 .left}
+
+
+
+![dark mode only](/images/yara/yara_de_eng_1.drawio.png){: .dark   }
+![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  }
+
+
 hex byte 
 https://www.malwarebytes.com/blog/news/2013/10/using-yara-to-attribute-malware
 
