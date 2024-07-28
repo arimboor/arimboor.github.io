@@ -21,6 +21,24 @@ To build a YARA rule to detect malicious code, we would first need to analyze an
 > **`Unique Strings`** can be anything, including a `typo error` in the code, as malware authors are often found in non-English speaking countries.
 {: .prompt-info }
 
+Sometimes, the `PDB` (Program Database) file contains debugging information about a file. This information can be useful for threat attribution. Here are some examples of PDB strings found in real-life malware samples. 
+
+```text
+C:\Users\User\Desktop\Encrypt\Math_Cad\Release\Math_Cad.pdb
+c:\users\user\documents\visual studio 2005\projects\adzxser\release\ADZXSER.pdb
+C:\Users\muham\source\repos\loup\Debug\loup.pdb
+C:\Users\user\Desktop\my_OK_2014\bit9\runsna\Release\runsna.pdb
+D:\MyProjects\spreader\Release\ssExecutor_x86.pdb fullword ascii
+C:\Projets\vbsedit_source\script2exe\Release\mywscript.pdb
+C:\Users\john\Desktop\PotPlayer\Release\PotPlayer.pdb
+C:\Work64\ADM\XFS\Release\XFS.pdb
+C:\Documents and Settings\Administrator\Desktop\GetPAI\Out\IE.pdb
+D:\Develop\sps\neuron2\x64\Release\dcomnet.pdb
+C:\Users\cyttek\Downloads\xfs_cashXP\Debug\xfs_cash_ncr.pdb
+C:\WRK\GHook\gHook\x64\Debug\gHookx64.pdb
+c:\Users\user\Desktop\ImageAgent\ImageAgent\PreAgent\src\builder\agent.pdb 
+```
+
 ## How to extract artifacts from files ?
 
 There are quite a few tools out there that can help to analyze the interesting artifacts in a file. Some of my favorite tools are listed below; however, use the one you are comfortable with. 
