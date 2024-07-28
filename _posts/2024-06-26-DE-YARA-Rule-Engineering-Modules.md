@@ -231,6 +231,7 @@ uint32(0) == 0x75737461 | tar signature at offset 0|
 uint16(0) == 0x004c | Windows lnk signature at offset 0| 
 uint32(0) == 0x25504446 | pdf signature at offset 0| 
  
+I’ve tried to cover some key approaches to rule engineering and provided real-life examples. However, this is a broad and evolving topic. I highly recommend referring to the official documentation and other resources available online to learn more about rule engineering.
 
 ![Desktop View](/images/yara/matrix1.jpg){: width="672" height="289" .w-50}
 
