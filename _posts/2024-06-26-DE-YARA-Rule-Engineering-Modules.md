@@ -77,14 +77,16 @@ this is good reference point for regex in yara https://engineering.avast.io/know
 
 ### Define Modifiers 
 
+To define a string pattern within a rule, the string itself must be declared as a variable. You can use special keywords a.k.a `modifiers`, to instruct the YARA engine on how to handle these string patterns. Some of the common modifiers I’ve used when writing rules are listed below. As mentioned multiple times in this series, refer to the official YARA documentation for more detailed and up-to-date information.
+
 **Keyword**	|**String Types**|	**Notes**|
 ascii	|Text, Regex	| match ASCII characters
-nocase	|Text, Regex	| Ignore case	
-wide	|Text, Regex	| match UTF16 (0x00 - null bytes) characters
+nocase	|Text, Regex	| Ignore case, Text strings in YARA are case-sensitive by default	
+wide	|Text, Regex	| match UTF16 characters,typical in many executable binaries
 fullword	|Text, Regex	| match only if delimited by non-alphanumeric characters
-xor	| Text	| XOR text string with single byte keys
-base64	| Text	| Convert to base64 strings	
-base64wide	|Text	|Convert to base64 strings, then match UTF16 (0x00 - null bytes) characters
+xor	| Text	| search for strings with a single byte XOR applied to them
+base64	| Text	| search for strings that have been base64 encoded
+base64wide	|Text	|search for strings that have been base64 encoded & apply Wide
 
 
 
