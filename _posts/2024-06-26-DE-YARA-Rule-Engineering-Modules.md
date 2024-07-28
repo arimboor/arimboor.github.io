@@ -23,8 +23,8 @@ https://www.youtube.com/watch?v=VljT6UytBg8&ab_channel=CyberD0M
 
 
 
-![dark mode only](/images/yara/approach.PNG){: .dark   }
-![light mode only](/images/yara/approach.PNG){:  .light  }
+![dark mode only](/images/yara/approach.PNG){: .dark  .w-75  .rounded-10 w='2212' h='768' }
+![light mode only](/images/yara/approach.PNG){:  .light .w-75  .rounded-10 w='2212' h='768' }
 
 ## What are the building blocks
 
@@ -32,8 +32,8 @@ https://www.youtube.com/watch?v=VljT6UytBg8&ab_channel=CyberD0M
 
 
 
-![dark mode only](/images/yara/yara_de_eng_1_black.drawio.png){: .dark   }
-![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  }
+![dark mode only](/images/yara/yara_de_eng_1_black.drawio.png){: .dark  width="672" height="289" .w-50  }
+![light mode only](/images/yara/yara_de_eng_1.drawio.png){:  .light  width="672" height="289" .w-50 }
 
 
 hex byte 
