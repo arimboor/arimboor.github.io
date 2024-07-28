@@ -63,6 +63,7 @@ rule cert {
    ...............
    .................
    condition:
+      uint16(0) == 0x5a4d and 
       pe.timestamp < 1640995200 and
       for any i in (0 .. pe.number_of_signatures) : 
       (pe.signatures[i].serial == "14:78:1b:c8:62:e8:dc:50:3a:55:93:46:f5:dc:c5:18" )            

@@ -8,38 +8,30 @@ pin: true
 math: true
 mermaid: true
 image:
-  path: /images/wallpaper_chik.jpg
+  path: /images/yara_main.png
   
 ---
 
 <!-- PROD -->
+A web shell is a malicious file placed on a victim’s web server that allows the threat actor to remotely execute commands. Many of the compromises I have investigated involved web shells on internet-exposed web servers, such as Microsoft IIS servers, Citrix NetScaler servers, and others. The web shell functions as both a backdoor and a persistence mechanism for the threat actor.
+
+![Desktop View](/images/yara/yara_webshell.drawio.png)
+
+I used to run YARA rules as soon as I obtained the disk image of any compromised web server to check for the presence of known web shell signatures. In many cases, I was fortunate to find that the actor had dropped a web shell immediately after exploiting vulnerabilities on the target server. This approach makes it easier to search through `web server logs` for interesting indicators of compromise (IOCs) such as the threat actor's IP address, user agent, etc.
+
+```bash
+C:\inetpub\wwwroot\ # On Windwos IIS Server 
+/var/www/html/ # on Linux Servers
+```
+
+I have linked here a collection of [YARA rules](https://github.com/Neo23x0/signature-base/blob/master/yara/cn_pentestset_webshells.yar) that contains a good number of web shell detections.
+
+What if we could run YARA rules on a specified file location and automatically execute the rule as soon as a new file is created or modified? This use case can be achieved using the [OSQuery](https://www.osquery.io/) endpoint agent. The agent includes both a built-in YARA engine and file integrity checking features. You can write a YARA rule to trigger as soon as files are dropped into a specific location. I have covered this in more detail in the OSQuery Ecosystem section, so be sure to check that out.
+
+<!--add video for weevely generate Password err.php -->
 
 
-![Desktop View](/images/yara/webshell.PNG)
-_Full screen width and center alignment_
 
 
-## CASE 1 : Hunt for webshells
-
-<!-- PROD END-->
-
-Types of web shell
-Full and reversehell
-Can read logs as ell 
-Log4j 
-Wscx logs
-
-https://github.com/Neo23x0/signature-base/blob/master/yara/cn_pentestset_webshells.yar
 
 
-A Web shell is a script placed on an openly accessible Web server, enabling an adversary to use the server as a gateway into a network. It can offer a set of functions for execution or provide a command-line interface on the system hosting the Web server.
-It includes strings related to base64 decoding and conditions specifying the presence of certain decoded strings, along with other functions and a defined file size range.For instance, checking for the presence of base64 decoding, specific functions, and file size within a defined range.
-
-
-weevely generate Password err.php
-xample: Scanning default IIS web directories using the base ruleset > .\yara64.exe -r -C base.yara.bin C:\inetpub\wwwroot\
-Example: Scanning default Apache web directories using the extended ruleset $ yara -r extended.yara.bin /var/www/html/
-
-Small webshell vs big webshells
-https://www.aon.com/cyber-solutions/aon_cyber_labs/detecting-effluence-an-unauthenticated-confluence-web-shell/
-Web sheel drops in excnahe / citrix. aall over web 
