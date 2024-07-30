@@ -233,6 +233,13 @@ Velociraptor provides an artifact that allows you to run YARA rules in memory, h
 windows.dection.yara.phisciamemeory
 
 
+Velociraptor path 
+
+```text
+/home/platform/yara/sftp/PA_CASE/**/*.*
+/home/platform/yara/sftp/PA_CASE/**/*.{log,old}
+```
+
 
 
 
