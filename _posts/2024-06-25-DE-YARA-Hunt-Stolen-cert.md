@@ -1,5 +1,5 @@
 ---
-title: Part 4 - Hunting for files with Stolen code-signing Cert.
+title: Part 4.1 - Hunting for files with Stolen code-signing Cert.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-25 12:00:00 -500
 categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response & Malware Hunting]

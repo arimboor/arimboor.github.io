@@ -1,5 +1,5 @@
 ---
-title: Part 12 - Yara Ecosysyem . Python
+title: Part 5.4 - Yara Ecosysyem . Python
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-17 12:00:00 -500
 categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response & Malware Hunting]
