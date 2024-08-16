@@ -1,6 +1,6 @@
 ---
 # the default layout is 'page'
-icon: fab fa-audible
+icon: fas fa-biohazard
 order: 3
 ---
 
