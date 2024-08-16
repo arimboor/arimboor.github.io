@@ -2,7 +2,7 @@
 title: Part 5.2 - Yara Ecosysyem . Velociraptor
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-19 12:00:00 -500
-categories: [Detection Engineering, Bytes of Insights - YARA for Incident Response & Malware Hunting]
+categories: [Bytes of Insights - YARA for Incident Response & Malware Hunting, Threat hunting with YARA for Microsoft Windows Endpoints]
 tags: [Yara]
 pin: true
 math: true
