@@ -2,7 +2,7 @@
 title: Part 4.4 - Hunting for Packed PE executables.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-23 12:00:00 -500
-categories: [Bytes of Insights - YARA for Incident Response & Malware Hunting, Threat hunting with YARA for Microsoft Windows Endpoints]
+categories: [Detection Engineering - YARA and its Ecosystems, Part 1 - Introduction to YARA and Writing detection rules]
 tags: [Yara]
 pin: true
 math: true

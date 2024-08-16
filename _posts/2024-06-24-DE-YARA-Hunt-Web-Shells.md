@@ -2,7 +2,7 @@
 title: Part 4.2 - Hunting for Web Shells deployed on Servers.
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-24 12:00:00 -500
-categories: [Bytes of Insights - YARA for Incident Response & Malware Hunting, Threat hunting with YARA for Microsoft Windows Endpoints]
+categories: [Detection Engineering - YARA and its Ecosystems, Part 2 - Threat hunting use cases for real world cases]
 tags: [Yara]
 pin: true
 math: true
