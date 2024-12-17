@@ -8,7 +8,7 @@ pin: true
 math: true
 mermaid: true
 image:
-  path: /images/yara_main.png
+  path: /images/yara/post.jpg
 ---
 
 I believe there's no need to introduce [**YARA**](https://github.com/VirusTotal/yara) to anyone working in the cybersecurity especially in the areas of detection engineering & Malware hunting, but I'd still like to briefly cover some basics to ensure we are all on the same page.
