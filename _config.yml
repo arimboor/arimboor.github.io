@@ -14,7 +14,7 @@ timezone: Europe/London
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure # the main title
+title: jintoa # the main title
 
 tagline: jintoa # it will display as the subtitle
 
