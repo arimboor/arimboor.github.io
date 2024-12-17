@@ -15,6 +15,9 @@ I believe there's no need to introduce [**YARA**](https://github.com/VirusTotal/
 
 The YARA engine is one of the most popular tools for pattern matching in files, and it's been around for more than 10 years. Recently, the rule engine was rewritten in the Rust programming language and that is now called [**YARA-X**](https://github.com/VirusTotal/yara-x). In this series, I will be demonstrating how to use the Yara engine, which is primarily written in the C programming language.
 
+
+![Desktop View](/images/bec/aitm_v2.drawio.svg)
+
 ### Why Pattern Matching? 
 
 ![Desktop View](/images/yara/yara-face0.jpg){:  width="672" height="289"  .w-50 .right} 
@@ -104,7 +107,7 @@ The diagram below is a logical representation of a typical Windows PE file. It's
 
 The PE file structure is a kind of container that the Windows OS understands and uses to load the file from the disk to the memory. It contains details the operating system needs, such as DLL imports, addresses, permissions, etc. Please Note, the addresses of the PE file on disk (raw address ) and in memory (virtual address) are different; however, this topic is more relevant for malware reverse engineering folks. To better understand the PE structure, let's open a sample Windows PE/ EXE in a hex editor. 
 
-![Desktop View](/images/yara/yara_pe_hex_view.png)
+![Desktop View](/images/bec/aitm_v2.drawio.svg)
 
 - The first 64 bytes in a Windows PE files is the MZ header and last 4 bytes of this is the offset to the PE signature.
 - The raw address 0x400h is typically the beginning of the execution code.
