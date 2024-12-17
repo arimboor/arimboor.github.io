@@ -16,20 +16,17 @@ timezone: Europe/London
 
 title: Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://arimboor.github.io"
 
-github:
-  username: github_username # change to your GitHub username
-
 twitter:
-  username: twitter_username # change to your Twitter username
+  username: arimb00r # change to your Twitter username
 
 social:
   # Change to your full name.
