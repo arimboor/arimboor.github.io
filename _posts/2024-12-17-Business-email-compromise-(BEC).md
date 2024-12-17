@@ -1,7 +1,7 @@
 ---
 title: Investigating Azure Business email compromise (BEC)
 description: Investigation methodologies for Azure 0365.
-date: 2024-04-28 12:00:00 -500
+date: 2024-12-17 12:00:00 -500
 categories: [Azure Cloud Investigation and forensics, Investigating Azure Business email compromise (BEC)]
 tags: [Azure, BEC,Unified Access Logs ]
 pin: true
