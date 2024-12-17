@@ -16,7 +16,7 @@ timezone: Europe/London
 
 title: Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure # the main title
 
-tagline: Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure # it will display as the subtitle
+tagline: jintoa # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Investigation notes for Microsoft Windows Endpoints and Azure Cloud infrastructure
