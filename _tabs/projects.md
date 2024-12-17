@@ -9,14 +9,14 @@ order: 3
 
 The **Zeek App for Hunting** uses open-source Zeek (formerly known as BRO) logs to give you insights into network traffic, which can be super useful for threat hunting and incident response. It's available on the Splunk Marketplace and has already been downloaded over 1,800 times. If you're using Zeek sensors for network forensics, it's definitely worth checking out!
 
-- Download link - [https://preview.splunkbase.splunk.com/app/6283](https://preview.splunkbase.splunk.com/app/6283)
+- Download link - [https://splunkbase.splunk.com/app/6283](https://splunkbase.splunk.com/app/6283)
 
 
 ### II. theOneTracker Platform
 
 The idea is to have all the relevant and up-to-date cybersecurity information in one place. This platform tracks security tools, open-source projects, security research, frameworks and compliance, malware samples, forensic images, and more—all in one spot. Check it out—it's free!
 
-- theOneTracker.com - [https://theonetracker.com/](https://theonetracker.com/)
+- OneTracker.org - [https://eonetracker.org/](https://onetracker.org/)
 
 
 ### III. blogTrace Platform
