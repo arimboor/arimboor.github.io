@@ -25,21 +25,15 @@ Here are the key evidence types you can collect on your own or with assistance f
 - `UAC Tool Triage`{: .filepath}
 - `Disk Image (DD Image)`{: .filepath}
 
-> Python Module : Developers can leverage YARA Python bindings for implementing various use cases
-{: .prompt-info }
-
 #### Tech Support File (TSF)
 
 A Tech Support File (TSF) is a compressed archive that provides detailed diagnostic information about a device’s configuration & operational status.  It’s a direct export from the firewall, & you can pull it off with some help from PA tech support. Most likely, this is the first set of evidence you'll end up investigating in most of the Palo Alto network firewall cases.
-
-
 
 #### Firewall Traffic Logs
 
 The logs capture all the traffic traces moving through the network firewall. You can export these logs directly from the firewall's user interface. System administrators can handle the generation and export of these files on their own, without needing help from PA support. These logs are organized by date and can be quite voluminous, typically being exported in CSV format.
 
  Once collected, you can ingest them into your analytics pipeline, such as OpenSearch, Splunk, or similar platforms for analysis.
-
 
 #### UAC Tool Triage 
 
@@ -54,7 +48,6 @@ The logs capture all the traffic traces moving through the network firewall. You
 
 Getting a disk image is key to examining evidence like backdoors, web shells, etc. From my experience, snagging that disk image from PA isn’t exactly a walk in the park. You’ll need to jump through a few hoops to get approvals, mainly because of the sensitive code base and other IP-related issues they need to protect. So, try your luck 🤞.
 
-
 ### Investigation Perspective
 
 `Is this firewall compromised?` That’s the big question. Figuring it out usually involves digging into the data from the TSF and Traffic Logs. Using YARA rules at this stage is super helpful for spotting any sketchy activity. If it turns out the device really has been hacked, the next move is to track down what the threat actor has been up to on the appliance.
@@ -64,5 +57,3 @@ Getting a disk image is key to examining evidence like backdoors, web shells, et
 - Local Users: Accounts set up on the appliance that the attacker might have accessed.
 - Identity Access Settings: Settings involving integrations with systems like Active Directory (AD), RADIUS, or other identity providers.
 - IP Addresses: IPs assigned to the appliance, especially those connected to internal network segments, which are vital for analyzing activity on internal hosts.
-
-

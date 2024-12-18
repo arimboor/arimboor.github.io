@@ -2,7 +2,7 @@
 title: Part 1 - Getting started with YARA and Windows PE Files
 description: Detection Engineering Using YARA Rules for Windows PE Files.
 date: 2024-04-28 12:00:00 -500
-categories: [Detection Engineering - YARA and its Ecosystems, Part 1 - Introduction to YARA and Writing detection rules]
+categories: [Detection Engineering, Introduction to YARA and Writing detection rules]
 tags: [Yara, Windows PE]
 pin: true
 math: true
