@@ -2,8 +2,8 @@
 title: Investigating Palo Alto Networks Firewall Devices.
 description: Getting started with evidence collection when responding to an incident involving a Palo Alto Firewall.
 date: 2024-12-10 12:00:00 -500
-categories: [IR, PA]
-tags: [Azure, CAP ,Unified Access Logs ]
+categories: [Responding to Incidents- A Field Guide]
+tags: [Palo Alto Firewall, CVE-2024-9474, CVE-2024-0012, CVE-2024-3400]
 pin: true
 math: true
 mermaid: true
