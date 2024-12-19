@@ -14,4 +14,3 @@ image:
  to be updated
 
 
-![dark mode only](/images/ual/ual.PNG){: .dark  }
