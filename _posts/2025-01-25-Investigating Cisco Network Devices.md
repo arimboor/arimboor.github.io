@@ -29,7 +29,7 @@ image:
 
 ### Evidence of traffic sniffing.
 
-Network devices like routers and switches are perfect targets for sneaking out data since the data flow through them, whether it's encrypted or not. Cisco devices have features like `Tcpdump` or `Embedded Packet Capture` (EPC), which attackers often use to quietly monitor the traffic without messing with the network device.
+Network devices like routers and switches are perfect targets for sneaking out data since the data flow through them, whether it's encrypted or not. Cisco devices have features like `Tpacap` or `Embedded Packet Capture` (EPC), which attackers often use to quietly monitor the traffic without messing with the network device.
 
 You can check the device history or logs to see if attacker enabled and used features like EPC. Since these devices can run for years, like 2-3 years without rebooting, it's a good idea to check their memory by grabbing the `core dump`.
 
