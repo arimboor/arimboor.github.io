@@ -2,7 +2,7 @@
 title: YARA and its enterprise ecosystems for Threat Hunting
 description: Detection Engineering Using YARA.
 date: 2024-04-28 12:00:00 -500
-categories: [Detection Engineering]
+categories: [Detection Engineering, YARA for Threat Hunting]
 tags: [Yara]
 pin: true
 math: true
